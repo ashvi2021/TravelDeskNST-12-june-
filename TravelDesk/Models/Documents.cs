@@ -2,18 +2,19 @@
 {
     public class Documents
     {
-      
-            public int DocumentsId { get; set; }
-            public string CommentName { get; set; }
+        public int Id { get; set; }
+        public string AadharPath { get; set; }
+        public string? VisaPath { get; set; }
+        public string? PassportPath { get; set; }
+        public string? TicketId { get; set; }
+        public string? TicketPath { get; set; }
+        public string CreatedBy { get; set; }
+        public DateTime CreatedDate { get; set; } = DateTime.Now;
+        public string? ModifiedBy { get; set; }
+        public DateTime? ModifiedDate { get; set; }
+        public Boolean IsActive { get; set; } = true;
 
-            //public Request Request { get; set; }
-            //public int RequestId { get; set; }
-            public string CreatedBy { get; set; }
-            public DateTime CreatedDate { get; set; } = DateTime.Now;
-            public string? ModifiedBy { get; set; }
-            public DateTime? ModifiedDate { get; set; }
-            public Boolean IsActive { get; set; } = true;
-        }
+    }
 
 
 

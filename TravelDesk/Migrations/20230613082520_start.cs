@@ -36,7 +36,11 @@ namespace TravelDesk.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ProjectName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AadharPath = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    VisaPath = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PassportPath = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TicketId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TicketPath = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -80,7 +84,7 @@ namespace TravelDesk.Migrations
                     ContactNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RoleId = table.Column<int>(type: "int", nullable: false),
                     DepartmentId = table.Column<int>(type: "int", nullable: false),
-                    ManagerId = table.Column<int>(type: "int", nullable: false),
+                    ManagerId = table.Column<int>(type: "int", nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -106,22 +110,20 @@ namespace TravelDesk.Migrations
                         name: "FK_Users_Users_ManagerId",
                         column: x => x.ManagerId,
                         principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
                 name: "Requests",
                 columns: table => new
                 {
-                    RequestId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<int>(type: "int", nullable: false),
                     ProjectId = table.Column<int>(type: "int", nullable: false),
                     ReasonForTraveling = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ManagerId = table.Column<int>(type: "int", nullable: false),
                     DocumentsId = table.Column<int>(type: "int", nullable: true),
-                    DocumentId = table.Column<int>(type: "int", nullable: true),
                     AadharNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -131,7 +133,7 @@ namespace TravelDesk.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Requests", x => x.RequestId);
+                    table.PrimaryKey("PK_Requests", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Requests_Documents_DocumentsId",
                         column: x => x.DocumentsId,
@@ -197,7 +199,7 @@ namespace TravelDesk.Migrations
                         name: "FK_Comments_Requests_RequestId",
                         column: x => x.RequestId,
                         principalTable: "Requests",
-                        principalColumn: "RequestId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                 });
 
@@ -237,7 +239,7 @@ namespace TravelDesk.Migrations
                         name: "FK_HotelDetails_Requests_RequestId",
                         column: x => x.RequestId,
                         principalTable: "Requests",
-                        principalColumn: "RequestId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                 });
 
@@ -281,7 +283,7 @@ namespace TravelDesk.Migrations
                         name: "FK_TransportDetails_Requests_RequestId",
                         column: x => x.RequestId,
                         principalTable: "Requests",
-                        principalColumn: "RequestId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.NoAction);
                 });
 

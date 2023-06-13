@@ -4,7 +4,7 @@ namespace TravelDeskNst.Models
 {
     public class User
     {
-        public int UserId { get; set; }
+        public int Id { get; set; }
         [Required]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }

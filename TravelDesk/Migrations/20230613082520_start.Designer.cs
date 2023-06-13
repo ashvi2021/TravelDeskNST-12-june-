@@ -12,7 +12,7 @@ using TravelDesk.Context;
 namespace TravelDesk.Migrations
 {
     [DbContext(typeof(TravelDeskDbContext))]
-    [Migration("20230613070452_start")]
+    [Migration("20230613082520_start")]
     partial class start
     {
         /// <inheritdoc />
@@ -132,6 +132,10 @@ namespace TravelDesk.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("AadharPath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("CreatedBy")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -148,8 +152,16 @@ namespace TravelDesk.Migrations
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ProjectName")
-                        .IsRequired()
+                    b.Property<string>("PassportPath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TicketId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TicketPath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VisaPath")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -242,11 +254,11 @@ namespace TravelDesk.Migrations
 
             modelBuilder.Entity("TravelDeskNst.Models.Request", b =>
                 {
-                    b.Property<int>("RequestId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RequestId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("AadharNumber")
                         .IsRequired()
@@ -258,9 +270,6 @@ namespace TravelDesk.Migrations
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<int?>("DocumentId")
-                        .HasColumnType("int");
 
                     b.Property<int?>("DocumentsId")
                         .HasColumnType("int");
@@ -287,7 +296,7 @@ namespace TravelDesk.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("RequestId");
+                    b.HasKey("Id");
 
                     b.HasIndex("DocumentsId");
 
@@ -401,7 +410,7 @@ namespace TravelDesk.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<int>("ManagerId")
+                    b.Property<int?>("ManagerId")
                         .HasColumnType("int");
 
                     b.Property<string>("MiddleName")
@@ -557,9 +566,7 @@ namespace TravelDesk.Migrations
 
                     b.HasOne("TravelDeskNst.Models.User", "Manager")
                         .WithMany()
-                        .HasForeignKey("ManagerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ManagerId");
 
                     b.HasOne("TravelDeskNst.Models.CommonTypeRef", "Role")
                         .WithMany()

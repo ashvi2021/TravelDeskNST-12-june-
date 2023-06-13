@@ -2,7 +2,7 @@
 {
     public class Request
     {
-        public int RequestId { get; set; }
+        public int Id { get; set; }
 
 
         public User? User { get; set; }

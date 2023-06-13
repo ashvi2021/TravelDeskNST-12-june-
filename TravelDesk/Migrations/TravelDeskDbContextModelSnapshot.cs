@@ -24,11 +24,11 @@ namespace TravelDesk.Migrations
 
             modelBuilder.Entity("TravelDeskNst.Models.Comment", b =>
                 {
-                    b.Property<int>("CommentId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CommentId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -73,7 +73,7 @@ namespace TravelDesk.Migrations
                     b.Property<string>("VisaNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("CommentId");
+                    b.HasKey("Id");
 
                     b.HasIndex("RequestId");
 
@@ -86,11 +86,11 @@ namespace TravelDesk.Migrations
 
             modelBuilder.Entity("TravelDeskNst.Models.CommonTypeRef", b =>
                 {
-                    b.Property<int>("CommonTypeRefId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CommonTypeRefId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -116,20 +116,20 @@ namespace TravelDesk.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("CommonTypeRefId");
+                    b.HasKey("Id");
 
                     b.ToTable("CommonTypes");
                 });
 
             modelBuilder.Entity("TravelDeskNst.Models.Documents", b =>
                 {
-                    b.Property<int>("DocumentsId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DocumentsId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("CommentName")
+                    b.Property<string>("AadharPath")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -149,18 +149,30 @@ namespace TravelDesk.Migrations
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("DocumentsId");
+                    b.Property<string>("PassportPath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TicketId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TicketPath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VisaPath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
 
                     b.ToTable("Documents");
                 });
 
             modelBuilder.Entity("TravelDeskNst.Models.HotelDetail", b =>
                 {
-                    b.Property<int>("HotelDetailId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("HotelDetailId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -193,7 +205,7 @@ namespace TravelDesk.Migrations
                     b.Property<DateTime>("StayDateTo")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("HotelDetailId");
+                    b.HasKey("Id");
 
                     b.HasIndex("MealPreferenceId");
 
@@ -239,11 +251,11 @@ namespace TravelDesk.Migrations
 
             modelBuilder.Entity("TravelDeskNst.Models.Request", b =>
                 {
-                    b.Property<int>("RequestId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RequestId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("AadharNumber")
                         .IsRequired()
@@ -281,7 +293,7 @@ namespace TravelDesk.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("RequestId");
+                    b.HasKey("Id");
 
                     b.HasIndex("DocumentsId");
 
@@ -296,11 +308,11 @@ namespace TravelDesk.Migrations
 
             modelBuilder.Entity("TravelDeskNst.Models.TransportDetail", b =>
                 {
-                    b.Property<int>("TransportDetailId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TransportDetailId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -345,7 +357,7 @@ namespace TravelDesk.Migrations
                     b.Property<string>("VisaNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("TransportDetailId");
+                    b.HasKey("Id");
 
                     b.HasIndex("RequestId");
 
@@ -358,11 +370,11 @@ namespace TravelDesk.Migrations
 
             modelBuilder.Entity("TravelDeskNst.Models.User", b =>
                 {
-                    b.Property<int>("UserId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ContactNumber")
                         .IsRequired()
@@ -416,7 +428,7 @@ namespace TravelDesk.Migrations
                     b.Property<int>("RoleId")
                         .HasColumnType("int");
 
-                    b.HasKey("UserId");
+                    b.HasKey("Id");
 
                     b.HasIndex("DepartmentId");
 
