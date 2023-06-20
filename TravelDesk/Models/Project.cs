@@ -1,4 +1,4 @@
-﻿namespace TravelDeskNst.Models
+﻿namespace TravelDesk.Models
 {
     public class Project
     {
@@ -15,8 +15,5 @@
         public DateTime? ModifiedDate { get; set; }
 
         public Boolean IsActive { get; set; } = true;
-
-
-
     }
 }

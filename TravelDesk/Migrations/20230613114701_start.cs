@@ -16,9 +16,9 @@ namespace TravelDesk.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Value = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                        .Annotation("SqlServer:Identity", "101, 1"),
                     Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Value = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -165,15 +165,8 @@ namespace TravelDesk.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    CommentName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RequestId = table.Column<int>(type: "int", nullable: false),
-                    InternationalTrvel = table.Column<bool>(type: "bit", nullable: false),
-                    DomesticTravel = table.Column<bool>(type: "bit", nullable: false),
-                    TravelDateFrom = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    TravelDateTo = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    TravelFromId = table.Column<int>(type: "int", nullable: false),
-                    TravelToId = table.Column<int>(type: "int", nullable: false),
-                    VisaNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PassportNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -183,18 +176,6 @@ namespace TravelDesk.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Comments", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Comments_CommonTypes_TravelFromId",
-                        column: x => x.TravelFromId,
-                        principalTable: "CommonTypes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
-                    table.ForeignKey(
-                        name: "FK_Comments_CommonTypes_TravelToId",
-                        column: x => x.TravelToId,
-                        principalTable: "CommonTypes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Comments_Requests_RequestId",
                         column: x => x.RequestId,
@@ -291,16 +272,6 @@ namespace TravelDesk.Migrations
                 name: "IX_Comments_RequestId",
                 table: "Comments",
                 column: "RequestId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Comments_TravelFromId",
-                table: "Comments",
-                column: "TravelFromId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Comments_TravelToId",
-                table: "Comments",
-                column: "TravelToId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_HotelDetails_MealPreferenceId",

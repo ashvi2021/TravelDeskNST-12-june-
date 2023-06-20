@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TravelDeskNst.Models;
-
+using TravelDesk.Models;
 namespace TravelDesk.Context
 {
     public class TravelDeskDbContext : DbContext
@@ -19,8 +18,9 @@ namespace TravelDesk.Context
         public DbSet<Project> Projects { get; set; }
         public DbSet<Request> Requests { get; set; }
         public DbSet<HotelDetail> HotelDetails { get; set; }
-        public DbSet<Documents> Documents { get; set; }
+        public DbSet<Document> Documents { get; set; }
         public DbSet<TransportDetail> TransportDetails { get; set; }
+
 
 
     }

@@ -12,8 +12,8 @@ using TravelDesk.Context;
 namespace TravelDesk.Migrations
 {
     [DbContext(typeof(TravelDeskDbContext))]
-    [Migration("20230613094228_start1")]
-    partial class start1
+    [Migration("20230619190116_updated")]
+    partial class updated
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace TravelDesk.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("TravelDeskNst.Models.Comment", b =>
+            modelBuilder.Entity("TravelDesk.Models.Comment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -63,7 +63,7 @@ namespace TravelDesk.Migrations
                     b.ToTable("Comments");
                 });
 
-            modelBuilder.Entity("TravelDeskNst.Models.CommonTypeRef", b =>
+            modelBuilder.Entity("TravelDesk.Models.CommonTypeRef", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -100,7 +100,7 @@ namespace TravelDesk.Migrations
                     b.ToTable("CommonTypes");
                 });
 
-            modelBuilder.Entity("TravelDeskNst.Models.Documents", b =>
+            modelBuilder.Entity("TravelDesk.Models.Document", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -116,7 +116,7 @@ namespace TravelDesk.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("CreatedDate")
+                    b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
@@ -145,7 +145,7 @@ namespace TravelDesk.Migrations
                     b.ToTable("Documents");
                 });
 
-            modelBuilder.Entity("TravelDeskNst.Models.HotelDetail", b =>
+            modelBuilder.Entity("TravelDesk.Models.HotelDetail", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -195,7 +195,7 @@ namespace TravelDesk.Migrations
                     b.ToTable("HotelDetails");
                 });
 
-            modelBuilder.Entity("TravelDeskNst.Models.Project", b =>
+            modelBuilder.Entity("TravelDesk.Models.Project", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -228,7 +228,7 @@ namespace TravelDesk.Migrations
                     b.ToTable("Projects");
                 });
 
-            modelBuilder.Entity("TravelDeskNst.Models.Request", b =>
+            modelBuilder.Entity("TravelDesk.Models.Request", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -285,7 +285,7 @@ namespace TravelDesk.Migrations
                     b.ToTable("Requests");
                 });
 
-            modelBuilder.Entity("TravelDeskNst.Models.TransportDetail", b =>
+            modelBuilder.Entity("TravelDesk.Models.TransportDetail", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -347,7 +347,7 @@ namespace TravelDesk.Migrations
                     b.ToTable("TransportDetails");
                 });
 
-            modelBuilder.Entity("TravelDeskNst.Models.User", b =>
+            modelBuilder.Entity("TravelDesk.Models.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -418,9 +418,9 @@ namespace TravelDesk.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("TravelDeskNst.Models.Comment", b =>
+            modelBuilder.Entity("TravelDesk.Models.Comment", b =>
                 {
-                    b.HasOne("TravelDeskNst.Models.Request", "Request")
+                    b.HasOne("TravelDesk.Models.Request", "Request")
                         .WithMany()
                         .HasForeignKey("RequestId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -429,21 +429,21 @@ namespace TravelDesk.Migrations
                     b.Navigation("Request");
                 });
 
-            modelBuilder.Entity("TravelDeskNst.Models.HotelDetail", b =>
+            modelBuilder.Entity("TravelDesk.Models.HotelDetail", b =>
                 {
-                    b.HasOne("TravelDeskNst.Models.CommonTypeRef", "MealPreference")
+                    b.HasOne("TravelDesk.Models.CommonTypeRef", "MealPreference")
                         .WithMany()
                         .HasForeignKey("MealPreferenceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TravelDeskNst.Models.CommonTypeRef", "NoOfMeals")
+                    b.HasOne("TravelDesk.Models.CommonTypeRef", "NoOfMeals")
                         .WithMany()
                         .HasForeignKey("NoOfMealsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TravelDeskNst.Models.Request", "Request")
+                    b.HasOne("TravelDesk.Models.Request", "Request")
                         .WithMany()
                         .HasForeignKey("RequestId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -456,25 +456,25 @@ namespace TravelDesk.Migrations
                     b.Navigation("Request");
                 });
 
-            modelBuilder.Entity("TravelDeskNst.Models.Request", b =>
+            modelBuilder.Entity("TravelDesk.Models.Request", b =>
                 {
-                    b.HasOne("TravelDeskNst.Models.Documents", "Documents")
+                    b.HasOne("TravelDesk.Models.Document", "Documents")
                         .WithMany()
                         .HasForeignKey("DocumentsId");
 
-                    b.HasOne("TravelDeskNst.Models.User", "Manager")
+                    b.HasOne("TravelDesk.Models.User", "Manager")
                         .WithMany()
                         .HasForeignKey("ManagerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TravelDeskNst.Models.Project", "Project")
+                    b.HasOne("TravelDesk.Models.Project", "Project")
                         .WithMany()
                         .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TravelDeskNst.Models.User", "User")
+                    b.HasOne("TravelDesk.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -489,21 +489,21 @@ namespace TravelDesk.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("TravelDeskNst.Models.TransportDetail", b =>
+            modelBuilder.Entity("TravelDesk.Models.TransportDetail", b =>
                 {
-                    b.HasOne("TravelDeskNst.Models.Request", "Request")
+                    b.HasOne("TravelDesk.Models.Request", "Request")
                         .WithMany()
                         .HasForeignKey("RequestId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TravelDeskNst.Models.CommonTypeRef", "TravelFrom")
+                    b.HasOne("TravelDesk.Models.CommonTypeRef", "TravelFrom")
                         .WithMany()
                         .HasForeignKey("TravelFromId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TravelDeskNst.Models.CommonTypeRef", "TravelTo")
+                    b.HasOne("TravelDesk.Models.CommonTypeRef", "TravelTo")
                         .WithMany()
                         .HasForeignKey("TravelToId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -516,19 +516,19 @@ namespace TravelDesk.Migrations
                     b.Navigation("TravelTo");
                 });
 
-            modelBuilder.Entity("TravelDeskNst.Models.User", b =>
+            modelBuilder.Entity("TravelDesk.Models.User", b =>
                 {
-                    b.HasOne("TravelDeskNst.Models.CommonTypeRef", "Department")
+                    b.HasOne("TravelDesk.Models.CommonTypeRef", "Department")
                         .WithMany()
                         .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TravelDeskNst.Models.User", "Manager")
+                    b.HasOne("TravelDesk.Models.User", "Manager")
                         .WithMany()
                         .HasForeignKey("ManagerId");
 
-                    b.HasOne("TravelDeskNst.Models.CommonTypeRef", "Role")
+                    b.HasOne("TravelDesk.Models.CommonTypeRef", "Role")
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)

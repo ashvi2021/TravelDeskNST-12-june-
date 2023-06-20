@@ -1,4 +1,4 @@
-﻿namespace TravelDeskNst.Models
+﻿namespace TravelDesk.Models
 {
     public class TransportDetail
     {
@@ -21,9 +21,5 @@
         public string? ModifiedBy { get; set; }
         public DateTime? ModifiedDate { get; set; }
         public Boolean IsActive { get; set; } = true;
-
-
-
-
     }
 }

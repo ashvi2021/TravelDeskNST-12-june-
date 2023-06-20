@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TravelDesk.Context;
 
@@ -11,9 +12,11 @@ using TravelDesk.Context;
 namespace TravelDesk.Migrations
 {
     [DbContext(typeof(TravelDeskDbContext))]
-    partial class TravelDeskDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230613114701_start")]
+    partial class start
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -113,7 +116,7 @@ namespace TravelDesk.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("CreatedDate")
+                    b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")

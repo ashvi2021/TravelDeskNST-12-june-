@@ -1,4 +1,6 @@
-﻿namespace TravelDeskNst.Models
+﻿using Azure.Core;
+
+namespace TravelDesk.Models
 {
     public class HotelDetail
     {
@@ -22,8 +24,5 @@
         public DateTime? ModifiedDate { get; set; }
 
         public Boolean IsActive { get; set; } = true;
-
-
-
     }
 }

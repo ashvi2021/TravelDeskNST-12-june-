@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace TravelDeskNst.Models
+namespace TravelDesk.Models
 {
     public class User
     {
@@ -25,17 +25,13 @@ namespace TravelDeskNst.Models
         public int RoleId { get; set; }
         public virtual CommonTypeRef? Department { get; set; }
         public int DepartmentId { get; set; }
-        public virtual User Manager { get; set; }
+        public virtual User? Manager { get; set; }
         public int? ManagerId { get; set; }
         public string CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.Now;
         public string? ModifiedBy { get; set; }
         public DateTime? ModifiedDate { get; set; }
         public Boolean IsActive { get; set; } = true;
-
-
-
-
 
     }
 }
